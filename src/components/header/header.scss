@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    height: 50px;
+    background-color: black;
+    &__inner {
+      margin: 0 auto;
+       width: 940px;
+       color: #fff;
+       display: flex;
+    justify-content: space-between;
+    }
+    &__menu {
+      font-family: monospace;
+    }
+  }
+.header .logo {
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+  color: #fff;
+  text-decoration: none;
+}
