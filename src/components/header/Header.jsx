@@ -3,6 +3,7 @@ import './header.scss';
 import { Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/icon.png';
+
 export default function Header() {
   return (
     <header className='header'>

@@ -1,7 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import { Home, CreateArticle } from './screens';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (

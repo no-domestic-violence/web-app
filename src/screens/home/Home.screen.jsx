@@ -9,9 +9,9 @@ import {
   Button,
 } from '@chakra-ui/react';
 
+import DayJS from 'react-dayjs';
 import appApiClient from '../../api/appApiClient';
 
-import DayJS from 'react-dayjs';
 const Home = () => {
   const [articles, setArticles] = useState([]);
 
@@ -20,7 +20,7 @@ const Home = () => {
   }, [articles]);
   const fetchArticles = async () => {
     try {
-      let response = await appApiClient.get(`/articles`);
+      const response = await appApiClient.get(`/articles`);
       setArticles(response.data);
     } catch (e) {
       console.error(e);

@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
-import appApiClient from '../../api/appApiClient';
 
 import {
   FormErrorMessage,
@@ -14,18 +13,16 @@ import {
   ButtonGroup,
   Container,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'; 
+import { Link , useHistory } from 'react-router-dom';
+ 
+import appApiClient from '../../api/appApiClient';
 
 export default function CreateArticle() {
-  const [message, setMessage] = React.useState('');
-
-  let history = useHistory();
+  const history = useHistory();
   const { handleSubmit, errors, register, formState } = useForm();
   const postArticle = async (data) => {
     try {
-      let response = await appApiClient.post(`articles`, data);
-      setMessage(response);
+      await appApiClient.post(`articles`, data);
     } catch (e) {
       console.error(e);
     }
