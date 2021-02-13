@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
-import axios from 'axios';
+import appApiClient from '../../api/appApiClient';
+
 import {
   FormErrorMessage,
   FormLabel,
@@ -21,10 +22,9 @@ export default function CreateArticle() {
 
   let history = useHistory();
   const { handleSubmit, errors, register, formState } = useForm();
-  const url = 'http://localhost:3001/api/';
   const postArticle = async (data) => {
     try {
-      let response = await axios.post(`${url}articles`, data);
+      let response = await appApiClient.post(`articles`, data);
       setMessage(response);
     } catch (e) {
       console.error(e);

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import {
   Container,
   Box,
@@ -10,6 +9,8 @@ import {
   Button,
 } from '@chakra-ui/react';
 
+import appApiClient from '../../api/appApiClient';
+
 import DayJS from 'react-dayjs';
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -17,11 +18,9 @@ const Home = () => {
   useEffect(() => {
     fetchArticles();
   }, [articles]);
-
-  const url = 'http://localhost:3001/api/';
   const fetchArticles = async () => {
     try {
-      let response = await axios.get(`${url}articles`);
+      let response = await appApiClient.get(`/articles`);
       setArticles(response.data);
     } catch (e) {
       console.error(e);
@@ -30,7 +29,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      return await axios.delete(`${url}articles/${id}`);
+      return await appApiClient.delete(`articles/${id}`);
     } catch (e) {
       console.error(e);
     }
