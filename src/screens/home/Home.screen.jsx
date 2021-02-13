@@ -13,15 +13,24 @@ import {
 import DayJS from 'react-dayjs';
 const Home = () => {
   const [articles, setArticles] = useState([]);
+
   useEffect(() => {
     fetchArticles();
-  }, []);
+  }, [articles]);
 
   const url = 'http://localhost:3001/api/';
   const fetchArticles = async () => {
     try {
       let response = await axios.get(`${url}articles`);
       setArticles(response.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      return await axios.delete(`${url}articles/${id}`);
     } catch (e) {
       console.error(e);
     }
@@ -56,7 +65,11 @@ const Home = () => {
               </DayJS>
             </Text>
           </Box>
-          <Button mt={4} colorScheme='pink' size='sm'>
+          <Button
+            mt={4}
+            colorScheme='pink'
+            size='sm'
+            onClick={() => handleDelete(article._id)}>
             Delete Article
           </Button>
         </Box>
