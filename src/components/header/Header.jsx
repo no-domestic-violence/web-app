@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.scss';
-
-
+import { Button } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 export default function Header() {
   return (
     <header className='header'>
@@ -10,7 +10,10 @@ export default function Header() {
           <img src='' alt='' className='logo__image' />
           <div>Domestic Violence App</div>
         </a>
-        <div className='header__menu'>Menu</div>
+        <Button colorScheme='blue'>
+          {' '}
+          <Link to='/create'>Post article</Link>
+        </Button>
       </div>
     </header>
   );

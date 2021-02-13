@@ -1,3 +1,4 @@
-import Home from './Home.screen';
+import Home from './home/Home.screen';
+import CreateArticle from './create-article/CreateArticle.screen';
 
-export default Home;
+export { Home, CreateArticle };

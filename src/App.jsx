@@ -1,12 +1,22 @@
 import React from 'react';
-import Header from './components/header/Header'
-import Home from './screens';
+import Header from './components/header/Header';
+import { Home, CreateArticle } from './screens';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className='App'>
-      <Header />
-      <Home/>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route exact path='/create'>
+            <CreateArticle />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

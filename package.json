@@ -32,6 +32,8 @@
     "react": "^16.13.1",
     "react-dayjs": "^0.3.2",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.15.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
   "eslintConfig": {
