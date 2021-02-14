@@ -53,9 +53,11 @@ const Home = () => {
             <Badge borderRadius='full' px='2' colorScheme='teal'>
               New
             </Badge>
-            <Badge borderRadius='full' px='2' colorScheme='pink'>
-              {article.violence_type}
-            </Badge>
+            {article.violence_type.map((type, key) => (
+              <Badge borderRadius='full' px='2' colorScheme='pink' key={key}>
+                {type}
+              </Badge>
+            ))}
             <Text fontSize='xs'>{article.text}</Text>
             <Text as='i' fontSize='xs'>
               Author - {article.author} created at{' '}
