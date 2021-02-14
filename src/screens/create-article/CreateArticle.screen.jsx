@@ -13,8 +13,8 @@ import {
   ButtonGroup,
   Container,
 } from '@chakra-ui/react';
-import { Link , useHistory } from 'react-router-dom';
- 
+import { Link, useHistory } from 'react-router-dom';
+
 import appApiClient from '../../api/appApiClient';
 
 export default function CreateArticle() {

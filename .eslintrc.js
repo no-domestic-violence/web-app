@@ -22,8 +22,9 @@ module.exports = {
     'react-native/no-inline-styles': 'off', //make it strict at some point
     'react-native/no-color-literals': 0, //make it strict at some point
     'import/prefer-default-export': 0, //make it strict at some point
-    'react-native/no-raw-text': 2,
+    'react-native/no-raw-text': 0,
     'react/prop-types': 0,
+    'react/no-array-index-key': 0,
     'react-native/no-single-element-style-arrays': 2,
   },
   settings: {

@@ -10,5 +10,6 @@ ReactDOM.render(
       <App />
     </ChakraProvider>
   </React.StrictMode>,
+  // eslint-disable-next-line
   document.getElementById('root')
 );

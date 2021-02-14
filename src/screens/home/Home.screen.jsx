@@ -15,9 +15,6 @@ import appApiClient from '../../api/appApiClient';
 const Home = () => {
   const [articles, setArticles] = useState([]);
 
-  useEffect(() => {
-    fetchArticles();
-  }, [articles]);
   const fetchArticles = async () => {
     try {
       const response = await appApiClient.get(`/articles`);
@@ -26,10 +23,13 @@ const Home = () => {
       console.error(e);
     }
   };
+  useEffect(() => {
+    fetchArticles();
+  }, [articles]);
 
   const handleDelete = async (id) => {
     try {
-      return await appApiClient.delete(`articles/${id}`);
+      await appApiClient.delete(`articles/${id}`);
     } catch (e) {
       console.error(e);
     }
@@ -68,6 +68,7 @@ const Home = () => {
             mt={4}
             colorScheme='pink'
             size='sm'
+            // eslint-disable-next-line
             onClick={() => handleDelete(article._id)}>
             Delete Article
           </Button>
