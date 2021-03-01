@@ -12,7 +12,7 @@ import {
 import DayJS from 'react-dayjs';
 import appApiClient from '../../api/appApiClient';
 
-const Home = () => {
+const Home = ({ login }) => {
   const [articles, setArticles] = useState([]);
 
   const fetchArticles = async () => {
@@ -37,6 +37,7 @@ const Home = () => {
 
   return (
     <Container columns={2} spacing={10}>
+      <Button onClick={login}>Log In</Button>
       {articles.map((article, key) => (
         <Box
           key={key}
