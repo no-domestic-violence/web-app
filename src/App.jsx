@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Header, ProtectedRoute } from './components';
-import { Home, CreateArticle } from './screens';
+import { Header, ProtectedRoute, LoginForm } from './components';
+import { CreateArticle } from './screens';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,7 +15,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path='/'>
-            <Home login={login} />
+            <LoginForm />
+            {/* <Home login={login} /> */}
           </Route>
           <ProtectedRoute
             path='/create'
