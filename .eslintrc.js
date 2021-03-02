@@ -6,6 +6,7 @@ module.exports = {
   env: {
     jest: true,
     'react-native/react-native': true,
+    browser: true,
   },
   rules: {
     'react/jsx-filename-extension': 'off',
