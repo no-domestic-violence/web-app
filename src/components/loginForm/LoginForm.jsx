@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Flex,
   Box,
@@ -8,13 +8,37 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
+import { Context as AuthContext } from '../../state/AuthContext';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const handleSubmit = () => {
-    console.log(email);
-    console.log(password);
+  const { login } = useContext(AuthContext);
+  const initialState = {
+    email: '',
+    password: '',
+    isSubmitting: false,
+    errorMessage: null,
+  };
+
+  const [data, setData] = useState(initialState);
+
+  // remove error?
+
+  const { email, password } = data;
+
+  const handleInputChange = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setData({
+      ...data,
+      isSubmitting: true,
+    });
+    login({ email, password });
   };
 
   return (
@@ -30,31 +54,35 @@ export default function LoginForm() {
           <Heading>Login</Heading>
         </Box>
         <Box my={4} textAlign='left'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <FormControl isRequired>
               <FormLabel>Email</FormLabel>
               <Input
                 type='email'
+                name='email'
                 placeholder='test@test.com'
-                onChange={(event) => setEmail(event.currentTarget.value)}
+                onChange={handleInputChange}
+                value={email}
               />
             </FormControl>
             <FormControl isRequired mt={6}>
               <FormLabel>Password</FormLabel>
               <Input
                 type='password'
+                name='password'
                 placeholder='*******'
-                onChange={(event) => setPassword(event.currentTarget.value)}
+                onChange={handleInputChange}
+                value={password}
               />
             </FormControl>
             <Button
+              disabled={data.isSubmitting}
               colorScheme='blue'
               type='submit'
               variant='outline'
               width='full'
-              mt={4}
-              onSubmit={handleSubmit}>
-              Sign In
+              mt={4}>
+              {data.isSubmitting ? 'Loading...' : ' Login'}
             </Button>
           </form>
         </Box>

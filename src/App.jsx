@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Header, ProtectedRoute, LoginForm } from './components';
-import { CreateArticle } from './screens';
+import { Header, ProtectedRoute } from './components';
+import { Home, CreateArticle } from './screens';
+import { Context as AuthContext } from './state/AuthContext';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const login = () => {
-    setIsAuthenticated(true);
-  };
+  const { authentication, state } = useContext(AuthContext);
+  const { isAuthenticated } = state;
+
+  useEffect(() => {
+    authentication();
+  }, []);
 
   return (
     <div className='App'>
@@ -15,8 +18,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path='/'>
-            <LoginForm />
-            {/* <Home login={login} /> */}
+            <Home />
           </Route>
           <ProtectedRoute
             path='/create'
