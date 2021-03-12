@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './header.scss';
 import { Button, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/icon.png';
+import { Context as AuthContext } from '../../state/AuthContext';
 
 export default function Header() {
+  const { logout, state } = useContext(AuthContext);
+  const { isAuthenticated } = state;
   return (
     <header className='header'>
       <div className='header__inner'>
@@ -12,9 +15,16 @@ export default function Header() {
           <img src={logo} alt='' className='logo__image' />
           <Text>Pool</Text>
         </a>
-        <Link to='/create'>
-          <Button colorScheme='blue'> Post article</Button>
-        </Link>
+        {isAuthenticated && (
+          <>
+            <Link to='/create'>
+              <Button colorScheme='blue'> Post article</Button>
+            </Link>
+            <Button colorScheme='red' onClick={logout}>
+              Log out
+            </Button>
+          </>
+        )}
       </div>
     </header>
   );
