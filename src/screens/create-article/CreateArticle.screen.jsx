@@ -83,7 +83,7 @@ export default function CreateArticle() {
             Submit
           </Button>
           <Button mt={4} colorScheme='blue'>
-            <Link to='/'>Back to all articles</Link>
+            <Link to='/'>Back to home page</Link>
           </Button>
         </ButtonGroup>
       </form>

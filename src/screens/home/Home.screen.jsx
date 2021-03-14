@@ -28,7 +28,7 @@ const Home = () => {
   };
   useEffect(() => {
     fetchArticles();
-  }, [articles]);
+  }, []);
 
   const handleDelete = async (id) => {
     try {

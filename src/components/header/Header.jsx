@@ -17,8 +17,11 @@ export default function Header() {
         </a>
         {isAuthenticated && (
           <>
-            <Link to='/create'>
+            <Link to='/create-article'>
               <Button colorScheme='blue'> Post article</Button>
+            </Link>
+            <Link to='/submit-video'>
+              <Button colorScheme='blue'> Submit video</Button>
             </Link>
             <Button colorScheme='red' onClick={logout}>
               Log out
