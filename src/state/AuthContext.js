@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import createAppContext from './CreateAppContext';
 import appApiClient from '../api/appApiClient';
 
@@ -16,6 +17,7 @@ const authReducer = (state, action) => {
         isAuthenticated: true,
         token: action.payload.token,
         username: action.payload.username,
+        id: action.payload.id,
       };
     case ACTIONS.LOGIN_SUCCESS:
       return {
@@ -23,6 +25,7 @@ const authReducer = (state, action) => {
         isAuthenticated: true,
         token: action.payload.token,
         username: action.payload.user.username,
+        id: action.payload.user._id,
         errorMessage: '',
       };
     case ACTIONS.LOGIN_ERROR:
@@ -47,6 +50,7 @@ const login = (dispatch) => async ({ email, password }) => {
     const response = await appApiClient.post('/login', { email, password });
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('username', response.data.user.username);
+    localStorage.setItem('id', response.data.user._id);
     dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({
@@ -59,7 +63,8 @@ const login = (dispatch) => async ({ email, password }) => {
 const authentication = (dispatch) => async () => {
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-  const user = { token, username };
+  const id = localStorage.getItem('id');
+  const user = { token, username, id };
   if (token) {
     dispatch({ type: ACTIONS.AUTH_SUCCESS, payload: user });
   }
