@@ -19,18 +19,22 @@ import appApiClient from '../../api/appApiClient';
 
 export default function CreateArticle() {
   const { state } = useContext(AuthContext);
-  const { id } = state;
+  const { id, token } = state;
   const history = useHistory();
   const { handleSubmit, errors, register, formState } = useForm();
-  const postArticle = async (data, id) => {
+  const postArticle = async (data, id, token) => {
     try {
-      await appApiClient.post(`articles`, { ...data, user_id: id });
+      await appApiClient.post(
+        `articles`,
+        { ...data, user_id: id },
+        { headers: { 'auth-token': token } }
+      );
     } catch (e) {
       console.error(e);
     }
   };
   function onSubmit(data) {
-    postArticle(data, id);
+    postArticle(data, id, token);
     history.push('/');
   }
 
