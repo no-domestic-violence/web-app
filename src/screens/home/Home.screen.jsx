@@ -16,6 +16,7 @@ import { Context as AuthContext } from '../../state/AuthContext';
 
 const Home = () => {
   const { state } = useContext(AuthContext);
+  const { token } = state;
   const [articles, setArticles] = useState([]);
 
   const fetchArticles = async () => {
@@ -32,7 +33,9 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await appApiClient.delete(`articles/${id}`);
+      await appApiClient.delete(`articles/${id}`, {
+        headers: { 'auth-token': token },
+      });
     } catch (e) {
       console.error(e);
     }
