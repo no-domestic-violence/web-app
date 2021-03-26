@@ -20,6 +20,7 @@ export default function Header() {
             <Link to='/create'>
               <Button colorScheme='blue'> Post article</Button>
             </Link>
+            <Text>Welcome, {state.username}!</Text>
             <Button colorScheme='red' onClick={logout}>
               Log out
             </Button>
