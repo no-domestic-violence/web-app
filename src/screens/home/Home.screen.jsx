@@ -29,12 +29,13 @@ const Home = () => {
   };
   useEffect(() => {
     fetchArticles();
-  }, [articles]);
+  }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, authorId) => {
     try {
       await appApiClient.delete(`articles/${id}`, {
         headers: { 'auth-token': token },
+        data: { author_id: authorId },
       });
     } catch (e) {
       console.error(e);
@@ -85,7 +86,7 @@ const Home = () => {
                 colorScheme='pink'
                 size='sm'
                 // eslint-disable-next-line
-                onClick={() => handleDelete(article._id)}>
+                onClick={() => handleDelete(article._id, article.author_id)}>
                 Delete Article
               </Button>
             </Box>

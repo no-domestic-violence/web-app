@@ -26,7 +26,7 @@ export default function CreateArticle() {
     try {
       await appApiClient.post(
         `articles`,
-        { ...data, user_id: id },
+        { ...data, author_id: id },
         { headers: { 'auth-token': token } }
       );
     } catch (e) {
