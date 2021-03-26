@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import baseURL from '../../config';
 import {
   FormLabel,
   FormControl,
@@ -11,7 +10,7 @@ import {
   GridItem,
   Divider,
   Container,
-  Heading
+  Heading,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
@@ -55,7 +54,7 @@ const SubmitVideo = () => {
     getFilesList();
   }, []);
   return (
-    <Container maxW="container.xl">
+    <Container maxW='container.xl'>
       <form onSubmit={handleSubmit} encType='multipart/formdata'>
         <FormControl>
           <FormLabel htmlFor='Title'>Title of the video</FormLabel>
@@ -80,25 +79,26 @@ const SubmitVideo = () => {
         </ButtonGroup>
       </form>
       <Divider />
-      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
-      {dislayImage?.length > 0
-        ? dislayImage.map((element) => (
-            <GridItem>
-              <Heading as="h6" size="xs" >{element.title}</Heading >
-              <AspectRatio maxW='500px' ratio={1}>
-                <iframe
-                  title='naruto'
-                  src={element.url_to_video}
-                  allowFullScreen
-                />
-              </AspectRatio>
-            </GridItem>
-          ))
-        : null}
+      <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+        {dislayImage?.length > 0
+          ? dislayImage.map((element) => (
+              <GridItem>
+                <Heading as='h6' size='xs'>
+                  {element.title}
+                </Heading>
+                <AspectRatio maxW='500px' ratio={1}>
+                  <iframe
+                    title='naruto'
+                    src={element.url_to_video}
+                    allowFullScreen
+                  />
+                </AspectRatio>
+              </GridItem>
+            ))
+          : null}
       </Grid>
-      
-      <Divider />
 
+      <Divider />
     </Container>
   );
 };
