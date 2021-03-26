@@ -7,13 +7,17 @@ import {
   Button,
   ButtonGroup,
   AspectRatio,
+  Grid,
+  GridItem,
+  Divider,
+  Container,
+  Heading
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 import appApiClient from '../../api/appApiClient';
 
 const SubmitVideo = () => {
-  const [newImage, setNewImage] = useState([]);
   const [image, setImage] = useState('');
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
@@ -36,7 +40,6 @@ const SubmitVideo = () => {
     appApiClient
       .post('/videos', formData)
       .then((res) => console.log(res))
-      // .then((res) => setDislayImage(res.data.document.imageData))
       .catch((err) => console.error(err));
   };
   useEffect(() => {
@@ -51,9 +54,8 @@ const SubmitVideo = () => {
 
     getFilesList();
   }, []);
-  console.log(dislayImage);
   return (
-    <>
+    <Container maxW="container.xl">
       <form onSubmit={handleSubmit} encType='multipart/formdata'>
         <FormControl>
           <FormLabel htmlFor='Title'>Title of the video</FormLabel>
@@ -77,26 +79,27 @@ const SubmitVideo = () => {
           </Button>
         </ButtonGroup>
       </form>
+      <Divider />
+      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
       {dislayImage?.length > 0
         ? dislayImage.map((element) => (
-            <>
-              <div>{element.title}</div>
-              <AspectRatio maxW='560px' ratio={1}>
+            <GridItem>
+              <Heading as="h6" size="xs" >{element.title}</Heading >
+              <AspectRatio maxW='500px' ratio={1}>
                 <iframe
                   title='naruto'
                   src={element.url_to_video}
                   allowFullScreen
                 />
               </AspectRatio>
-              <img
-                src={`${baseURL}/${element.imageData}`}
-                alt='upload-image'
-                className='process__image'
-              />
-            </>
+            </GridItem>
           ))
         : null}
-    </>
+      </Grid>
+      
+      <Divider />
+
+    </Container>
   );
 };
 export default SubmitVideo;
