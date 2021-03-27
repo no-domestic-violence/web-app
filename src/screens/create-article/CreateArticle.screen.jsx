@@ -22,12 +22,12 @@ export default function CreateArticle() {
   const { id, token } = state;
   const history = useHistory();
   const { handleSubmit, errors, register, formState } = useForm();
-  const postArticle = async (data, id, token) => {
+  const postArticle = async (data, authorId, authToken) => {
     try {
       await appApiClient.post(
         `articles`,
-        { ...data, author_id: id },
-        { headers: { 'auth-token': token } }
+        { ...data, author_id: authorId },
+        { headers: { 'auth-token': authToken } }
       );
     } catch (e) {
       console.error(e);
