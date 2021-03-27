@@ -27,6 +27,7 @@ const Home = () => {
       console.error(e);
     }
   };
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -37,6 +38,7 @@ const Home = () => {
         headers: { 'auth-token': token },
         data: { author_id: authorId },
       });
+      fetchArticles();
     } catch (e) {
       console.error(e);
     }
