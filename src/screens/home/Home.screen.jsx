@@ -28,7 +28,7 @@ const Home = () => {
   };
   useEffect(() => {
     fetchArticles();
-  }, [articles]);
+  }, []);
 
   const handleDelete = async (id) => {
     try {
@@ -82,7 +82,7 @@ const Home = () => {
                 colorScheme='pink'
                 size='sm'
                 // eslint-disable-next-line
-                onClick={() => handleDelete(article._id)}>
+                onClick={() => handleDelete(article._id, article.user_id)}>
                 Delete Article
               </Button>
             </Box>
