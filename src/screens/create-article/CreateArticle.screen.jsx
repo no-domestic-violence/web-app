@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   FormErrorMessage,
@@ -14,21 +14,27 @@ import {
   Container,
 } from '@chakra-ui/react';
 import { Link, useHistory } from 'react-router-dom';
-
+import { Context as AuthContext } from '../../state/AuthContext';
 import appApiClient from '../../api/appApiClient';
 
 export default function CreateArticle() {
+  const { state } = useContext(AuthContext);
+  const { id, token } = state;
   const history = useHistory();
   const { handleSubmit, errors, register, formState } = useForm();
-  const postArticle = async (data) => {
+  const postArticle = async (data, authorId, authToken) => {
     try {
-      await appApiClient.post(`articles`, data);
+      await appApiClient.post(
+        `articles`,
+        { ...data, author_id: authorId },
+        { headers: { 'auth-token': authToken } }
+      );
     } catch (e) {
       console.error(e);
     }
   };
   function onSubmit(data) {
-    postArticle(data);
+    postArticle(data, id, token);
     history.push('/');
   }
 

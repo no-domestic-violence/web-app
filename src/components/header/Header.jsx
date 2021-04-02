@@ -23,6 +23,7 @@ export default function Header() {
             <Link to='/submit-video'>
               <Button colorScheme='blue'> Submit video</Button>
             </Link>
+            <Text>Welcome, {state.username}!</Text>
             <Button colorScheme='red' onClick={logout}>
               Log out
             </Button>

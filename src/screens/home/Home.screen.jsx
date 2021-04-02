@@ -16,6 +16,7 @@ import { Context as AuthContext } from '../../state/AuthContext';
 
 const Home = () => {
   const { state } = useContext(AuthContext);
+  const { token } = state;
   const [articles, setArticles] = useState([]);
 
   const fetchArticles = async () => {
@@ -26,13 +27,18 @@ const Home = () => {
       console.error(e);
     }
   };
+
   useEffect(() => {
     fetchArticles();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, authorId) => {
     try {
-      await appApiClient.delete(`articles/${id}`);
+      await appApiClient.delete(`articles/${id}`, {
+        headers: { 'auth-token': token },
+        data: { author_id: authorId },
+      });
+      fetchArticles();
     } catch (e) {
       console.error(e);
     }
@@ -82,7 +88,7 @@ const Home = () => {
                 colorScheme='pink'
                 size='sm'
                 // eslint-disable-next-line
-                onClick={() => handleDelete(article._id, article.user_id)}>
+                onClick={() => handleDelete(article._id, article.author_id)}>
                 Delete Article
               </Button>
             </Box>
