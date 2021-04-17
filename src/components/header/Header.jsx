@@ -20,6 +20,7 @@ export default function Header() {
             <Link to='/create-article'>
               <Button colorScheme='blue'> Post article</Button>
             </Link>
+            <Text>Welcome, {state.username}!</Text>
             <Link to='/submit-video'>
               <Button colorScheme='blue'> Submit video</Button>
             </Link>
