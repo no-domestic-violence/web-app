@@ -22,7 +22,7 @@ const Home = () => {
   const fetchArticles = async () => {
     try {
       const response = await appApiClient.get(`/articles`);
-      setArticles(response.data);
+      setArticles(response.data.articles);
     } catch (e) {
       console.error(e);
     }
