@@ -27,7 +27,7 @@ export default function CreateArticle() {
       await appApiClient.post(
         `articles`,
         { ...data, author_id: authorId },
-        { headers: { 'auth-token': authToken } }
+        { headers: { Authorization: `Bearer ${authToken}` } }
       );
     } catch (e) {
       console.error(e);
