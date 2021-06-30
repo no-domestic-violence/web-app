@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FormLabel,
   FormControl,
@@ -41,16 +41,13 @@ const SubmitVideo = () => {
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
   };
-  useEffect(() => {
-    const getFilesList = async () => {
-      try {
-        const { data } = await appApiClient.get(`/videos`);
-        setDislayImage(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const getFilesList = useCallback(async () => {
+    const { data } = await appApiClient.get(`/videos`);
+    const { videos } = data;
+    setDislayImage(videos);
+  }, []);
 
+  useEffect(() => {
     getFilesList();
   }, []);
   return (
