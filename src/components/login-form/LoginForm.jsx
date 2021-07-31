@@ -9,6 +9,12 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { Context as AuthContext } from '../../state/AuthContext';
+import Captcha from '../captcha/Captcha';
+import { captchaSiteKey } from '../../config';
+import {
+  GoogleReCaptchaProvider,
+  GoogleReCaptcha,
+} from 'react-google-recaptcha-v3';
 
 export default function LoginForm() {
   const { login } = useContext(AuthContext);
@@ -41,6 +47,11 @@ export default function LoginForm() {
     login({ email, password });
   };
 
+  const handleVerify = (token) => {
+    debugger;
+    console.log('Arrives', token);
+  };
+
   return (
     <Flex width='full' align='center' justifyContent='center'>
       <Box
@@ -55,6 +66,13 @@ export default function LoginForm() {
         </Box>
         <Box my={4} textAlign='left'>
           <form onSubmit={handleSubmit}>
+            <FormControl isRequired>
+              <FormLabel>Captcha</FormLabel>
+
+              <GoogleReCaptchaProvider reCaptchaKey={captchaSiteKey}>
+                <GoogleReCaptcha onVerify={handleVerify} />
+              </GoogleReCaptchaProvider>
+            </FormControl>
             <FormControl isRequired>
               <FormLabel>Email</FormLabel>
               <Input
