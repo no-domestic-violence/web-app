@@ -29,7 +29,7 @@ export default function LoginForm() {
 
   // remove error?
 
-  const { email, password } = data;
+  const { email, password, captchaToken } = data;
 
   const handleInputChange = (event) => {
     setData({
