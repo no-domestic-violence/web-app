@@ -65,13 +65,11 @@ export default function LoginForm() {
         borderRadius={8}
         boxShadow='lg'>
         <Box textAlign='center'>
-          <Heading>login</Heading>
+          <Heading>Login</Heading>
         </Box>
         <Box my={4} textAlign='left'>
           <form onSubmit={handleSubmit}>
             <FormControl isRequired>
-              <FormLabel>Captcha</FormLabel>
-
               <GoogleReCaptchaProvider reCaptchaKey={captchaSiteKey}>
                 <GoogleReCaptcha onVerify={handleVerify} />
               </GoogleReCaptchaProvider>
