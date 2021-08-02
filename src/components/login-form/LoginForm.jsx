@@ -51,7 +51,7 @@ export default function LoginForm() {
         borderRadius={8}
         boxShadow='lg'>
         <Box textAlign='center'>
-          <Heading>Login</Heading>
+          <Heading>login</Heading>
         </Box>
         <Box my={4} textAlign='left'>
           <form onSubmit={handleSubmit}>
