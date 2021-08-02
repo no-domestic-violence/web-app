@@ -49,10 +49,12 @@ export default function LoginForm() {
 
   const handleVerify = (token) => {
     console.log('Arrives', token);
-    setData({
-      ...data,
-      captchaToken: token,
-    });
+    if (!captchaToken) {
+      setData({
+        ...data,
+        captchaToken: token,
+      });
+    }
   };
 
   return (
