@@ -22,6 +22,7 @@ export default function LoginForm() {
     password: '',
     isSubmitting: false,
     errorMessage: null,
+    captchaToken: null,
   };
 
   const [data, setData] = useState(initialState);
@@ -43,12 +44,15 @@ export default function LoginForm() {
       ...data,
       isSubmitting: true,
     });
-    login({ email, password });
+    login({ email, password, captchaToken });
   };
 
   const handleVerify = (token) => {
-    debugger;
     console.log('Arrives', token);
+    setData({
+      ...data,
+      captchaToken: token,
+    });
   };
 
   return (

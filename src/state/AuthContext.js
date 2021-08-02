@@ -45,9 +45,14 @@ const authReducer = (state, action) => {
   }
 };
 
-const login = (dispatch) => async ({ email, password }) => {
+const login = (dispatch) => async ({ email, password, captchaToken }) => {
   try {
-    const response = await appApiClient.post('/login', { email, password });
+    const response = await appApiClient.post('/login', {
+      email,
+      password,
+      captchaToken,
+      platform: 'web',
+    });
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('username', response.data.user.username);
     localStorage.setItem('id', response.data.user._id);
