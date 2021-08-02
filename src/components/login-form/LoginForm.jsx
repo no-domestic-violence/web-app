@@ -9,7 +9,6 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { Context as AuthContext } from '../../state/AuthContext';
-import Captcha from '../captcha/Captcha';
 import { captchaSiteKey } from '../../config';
 import {
   GoogleReCaptchaProvider,
